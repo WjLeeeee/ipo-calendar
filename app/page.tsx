@@ -169,14 +169,15 @@ function getMonthItems(month: Date) {
                 </span>
               </div>
               <Calendar
-                onChange={(v) => handleDateClick(v as Date)}
-                value={date}
-                tileContent={getTileContent}
-                locale="ko-KR"
-                onActiveStartDateChange={({ activeStartDate }) => {
-                  if (activeStartDate) setCurrentMonth(activeStartDate);
-                }}
-              />
+  onChange={(v) => handleDateClick(v as Date)}
+  value={date}
+  tileContent={getTileContent}
+  locale="ko-KR"
+  formatDay={(_, date) => date.getDate().toString()}
+  onActiveStartDateChange={({ activeStartDate }) => {
+    if (activeStartDate) setCurrentMonth(activeStartDate);
+  }}
+/>
               {selected.length > 0 && (
                 <div className="w-full bg-white rounded-xl shadow overflow-hidden">
                   <table className="w-full">

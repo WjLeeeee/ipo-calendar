@@ -90,3 +90,18 @@ body {
 .react-calendar__tile--now {
   background: #fef9c3;
 }
+
+@media (max-width: 768px) {
+  .react-calendar__month-view__days__day abbr {
+    font-size: 12px;
+  }
+  
+  .react-calendar__month-view__days__day {
+    height: 90px !important;
+    padding: 4px 2px !important;
+  }
+
+  .react-calendar__tile {
+    font-size: 11px;
+  }
+}
