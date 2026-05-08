@@ -1,5 +1,6 @@
 import * as http from "http";
 import * as cheerio from "cheerio";
+export const revalidate = 3600; // 1시간마다 갱신
 
 async function fetchHtml(path: string): Promise<string> {
   return new Promise<string>((resolve, reject) => {
