@@ -249,10 +249,6 @@ export default function Home() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
   useEffect(() => {
-    if (window.innerWidth < 768) setViewMode("list");
-  }, []);
-
-  useEffect(() => {
     fetch("/api/ipo")
       .then((res) => res.json())
       .then((data) => {
