@@ -59,7 +59,7 @@ export async function GET() {
     const underwriter = $(cols[5]).text().trim();
     const detailHref = $(cols[0]).find("a").attr("href") || "";
 
-    if (name && period && period.match(/^\d{4}\.\d{2}\.\d{2}~/)) {
+    if (cleanName && period && period.match(/^\d{4}\.\d{2}\.\d{2}~/)) {
       ipoList.push({ name: cleanName, period, fixedPrice, hopePrice, competition, underwriter, detailHref });
     }
   });
