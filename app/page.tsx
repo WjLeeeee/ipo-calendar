@@ -317,10 +317,32 @@ export default function Home() {
             </>
           ) : (
             <div className="w-full">
-              <h2 className="text-lg font-bold text-gray-700 mb-3">
-                {currentMonth.getFullYear()}년 {currentMonth.getMonth() + 1}월 공모주 목록
-                <span className="ml-2 text-sm font-normal text-gray-400">({monthItems.length}건)</span>
-              </h2>
+              <div className="flex items-center justify-between mb-3">
+                <button
+                  onClick={() => {
+                    const d = new Date(currentMonth);
+                    d.setMonth(d.getMonth() - 1);
+                    setCurrentMonth(d);
+                  }}
+                  className="text-blue-600 font-bold text-xl px-3"
+                >
+                  ‹
+                </button>
+                <h2 className="text-lg font-bold text-gray-700">
+                  {currentMonth.getFullYear()}년 {currentMonth.getMonth() + 1}월 공모주 목록
+                  <span className="ml-2 text-sm font-normal text-gray-400">({monthItems.length}건)</span>
+                </h2>
+                <button
+                  onClick={() => {
+                    const d = new Date(currentMonth);
+                    d.setMonth(d.getMonth() + 1);
+                    setCurrentMonth(d);
+                  }}
+                  className="text-blue-600 font-bold text-xl px-3"
+                >
+                  ›
+                </button>
+              </div>
               {monthItems.length === 0 ? (
                 <p className="text-center text-gray-400 py-8">해당 월에 공모주가 없습니다.</p>
               ) : (
