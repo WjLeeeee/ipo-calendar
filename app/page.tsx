@@ -107,11 +107,11 @@ export default function Home() {
   const [date, setDate] = useState(new Date());
   const [viewMode, setViewMode] = useState<"calendar" | "list">("calendar");
   const [currentMonth, setCurrentMonth] = useState(new Date());
-useEffect(() => {
-  if (window.innerWidth < 768) {
-    setViewMode("list");
-  }
-}, []);
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setViewMode("list");
+    }
+  }, []);
   useEffect(() => {
     fetch("/api/ipo")
       .then((res) => res.json())
@@ -183,6 +183,9 @@ useEffect(() => {
       return d >= range.start && d <= range.end;
     });
     setSelected(items);
+    setTimeout(() => {
+      document.getElementById("selected-list")?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   }
 
   const monthItems = getMonthItems(currentMonth);
@@ -199,17 +202,15 @@ useEffect(() => {
           <div className="flex bg-white rounded-xl shadow p-1 gap-1">
             <button
               onClick={() => setViewMode("calendar")}
-              className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all ${
-                viewMode === "calendar" ? "bg-blue-600 text-white shadow" : "text-gray-500 hover:text-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all ${viewMode === "calendar" ? "bg-blue-600 text-white shadow" : "text-gray-500 hover:text-gray-700"
+                }`}
             >
               📅 캘린더
             </button>
             <button
               onClick={() => setViewMode("list")}
-              className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all ${
-                viewMode === "list" ? "bg-blue-600 text-white shadow" : "text-gray-500 hover:text-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all ${viewMode === "list" ? "bg-blue-600 text-white shadow" : "text-gray-500 hover:text-gray-700"
+                }`}
             >
               📋 리스트
             </button>
@@ -233,7 +234,7 @@ useEffect(() => {
                 }}
               />
               {selected.length > 0 && (
-                <div className="w-full">
+                <div id="selected-list" className="w-full">
                   <IpoTable items={selected} />
                 </div>
               )}
