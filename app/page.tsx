@@ -107,7 +107,11 @@ export default function Home() {
   const [date, setDate] = useState(new Date());
   const [viewMode, setViewMode] = useState<"calendar" | "list">("calendar");
   const [currentMonth, setCurrentMonth] = useState(new Date());
-
+useEffect(() => {
+  if (window.innerWidth < 768) {
+    setViewMode("list");
+  }
+}, []);
   useEffect(() => {
     fetch("/api/ipo")
       .then((res) => res.json())
