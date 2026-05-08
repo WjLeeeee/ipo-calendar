@@ -51,6 +51,7 @@ export async function GET() {
     if (cols.length < 4) return;
 
     const name = $(cols[0]).text().trim();
+    const cleanName = name.replace(/\(.*?\)/g, "").trim();
     const period = $(cols[1]).text().trim();
     const fixedPrice = $(cols[2]).text().trim();
     const hopePrice = $(cols[3]).text().trim();
@@ -59,7 +60,7 @@ export async function GET() {
     const detailHref = $(cols[0]).find("a").attr("href") || "";
 
     if (name && period && period.match(/^\d{4}\.\d{2}\.\d{2}~/)) {
-      ipoList.push({ name, period, fixedPrice, hopePrice, competition, underwriter, detailHref });
+      ipoList.push({ cleanName, period, fixedPrice, hopePrice, competition, underwriter, detailHref });
     }
   });
 
